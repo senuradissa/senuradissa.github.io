@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senura Dissanayake — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12141a;
+    --bg-raised: #181b23;
+    --line: #2a2e38;
+    --text: #e8e6e0;
+    --text-dim: #9099a8;
+    --accent: #c8102e;
+    --accent-dim: #7a1123;
+    --teal: #3aafa9;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+  }
+
+  a{ color: var(--teal); text-decoration: none; }
+  a:hover{ color: var(--text); }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  .statusbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--line);
+    letter-spacing: 0.02em;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .statusbar .dot{
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    margin-right: 8px;
+    box-shadow: 0 0 6px var(--teal);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%, 100%{ opacity: 1; }
+    50%{ opacity: 0.35; }
+  }
+
+  .hero{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 72px 24px 48px;
+  }
+  .hero .eyebrow{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hero .eyebrow::before{ content: "$ "; color: var(--text-dim); }
+  .hero h1{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    margin: 10px 0 6px;
+    line-height: 1.05;
+  }
+  .hero .role{
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+  .hero p.lede{
+    max-width: 640px;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-grid figure{ margin: 0; }
+  .hero-grid img{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  @media (max-width: 720px){
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+
+  nav.toc{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+  }
+  nav.toc ul{
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  nav.toc li{ flex: 1; }
+  nav.toc a{
+    display: block;
+    padding: 14px 16px;
+    color: var(--text-dim);
+    border-right: 1px solid var(--line);
+    text-align: center;
+  }
+  nav.toc li:last-child a{ border-right: none; }
+  nav.toc a:hover{
+    background: var(--bg-raised);
+    color: var(--teal);
+  }
+  @media (max-width: 600px){
+    nav.toc ul{ flex-direction: column; }
+    nav.toc a{ border-right: none; border-bottom: 1px solid var(--line); }
+    nav.toc li:last-child a{ border-bottom: none; }
+  }
+
+  section{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 24px;
+    border-top: 1px solid var(--line);
+  }
+  section .num{
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+  section h2{
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin: 8px 0 24px;
+  }
+  section p{
+    color: var(--text);
+    max-width: 700px;
+  }
+
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .about-grid img{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  figcaption{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+  @media (max-width: 720px){
+    .about-grid{ grid-template-columns: 1fr; }
+  }
+
+  .project{
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .project-head{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .project-head h3{
+    font-family: var(--display);
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .tag{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 20px;
+    padding: 2px 10px;
+    letter-spacing: 0.03em;
+  }
+  .project p{ color: var(--text-dim); margin: 0; }
+  .project-link{
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--teal);
+  }
+  .project-link:hover{ color: var(--text); }
+  .project-links{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .contact-links{
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .contact-links a{
+    font-family: var(--mono);
+    font-size: 14px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 18px;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .contact-links a:hover{
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  footer{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <span><span class="dot"></span>status: learning</span>
+    <span id="uptime">uptime: 0s</span>
+  </div>
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">whoami</div>
+        <h1>Senura Dissanayake</h1>
+        <div class="role">Computer systems engineering student · Carleton University, Ottawa · 🏎 🏎 🏎</div>
+        <p class="lede">
+          Welcome to my corner of the internet. I split my time between hardware and software, or at least I try to. 
+          Just like every other half baked project idea of mine, this portfolio is also simply a work in progress.
+          More gets added here as I learn more.
+        </p>
+      </div>
+
+      <figure>
+        <img src="20260601_012521691_iOS.heic" alt="A photo of me at a picturesque sunset :)">
+        <figcaption>
+          A surely dashing photo of me. Wouldn't you say?
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Page sections">
+    <ul>
+      <li><a href="#about">01 — About</a></li>
+      <li><a href="#projects">02 — Projects</a></li>
+      <li><a href="blog.html">03 — Blog</a></li>
+      <li><a href="#contact">04 — Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="about">
+    <div class="num">01</div>
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm a Sri Lankan international student at Carleton University in Ottawa, Ontario, Canada.
+          I'm probably as much a car nerd as a tech nerd, which inevitably makes me an F1 fan (and a Lewis Hamilton Fan :)).
+          Most of my project time goes into whatever I find fun on the internet and currently a small FPGA project so that means
+          a Zynq-based racing game and an auto updating dashboard pulling live F1 telemetry. How original right?
+        </p>
+      </div>
+      <figure>
+        <img src="IMG_5832.JPG" alt="Max Verstappen making an overtake at the 2021 Qatar Inaugural Grand Prix">
+        <figcaption>2021 Inaugural Qatar Grand Prix — Spectator Stands</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="num">02</div>
+    <h2>Current Projects</h2>
+    <p>
+      I keep a running log of what I'm building over on the blog — write-ups, dead ends,
+      and the occasional bug that took way too long to find.
+    </p>
+
+    <!--Section for PSPi 6 Project-->
+    <div class="project">
+      <div class="project-head">
+        <h3>PSPi 6 Build</h3>
+        <span class="tag"> Hardware Disassembly · Hardware Repurposing</span>
+      </div>
+      <p>
+        A project originally made by othermod. He has a Github and Youtube channel, check em out. Essentially a project where you will 
+        repurpose a PSP shell to instead house othermod's custom PCB to instead hold a Raspberry Pi CM4 (Compute Module 4).
+      </p>
+      <div class="project-links" style="margin-top: 12px;">
+        <!--Need to make a new html file for this project and add it to blog.html-->
+        <a href="blog/PSPi_6.html" class="project-link">Read the full write-up →</a>
+      </div>
+    </div>
+    <!--End of Section-->
+
+
+    <div class="project">
+      <div class="project-head">
+        <h3>F1 Race Dashboard</h3>
+        <span class="tag">Raspberry Pi · Flask · Requests</span>
+      </div>
+      <p>
+        A live race dashboard on a Pi 4, pulling from the OpenF1 API through a background
+        caching thread. Six endpoints wired up so far.
+      </p>
+      <div class="project-links" style="margin-top: 12px;">
+        <a href="https://github.com/senuradissa/Personal-F1-Session-Dashboard" class="project-link">Github Repo</a>
+        <a href="blog/dashboard.html" class="project-link">Read the full write-up →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>FPGA Top-Down Racing Game</h3>
+        <span class="tag">Zynq · Vivado · C · Verilog · SystemVerilog</span>
+      </div>
+      <p>
+        A top-down racing game built in C on a Zybo Z7-7020, rendering to a 640×480 framebuffer
+        over HDMI via VDMA.
+      </p>
+      <div class="project-links" style="margin-top: 12px;">
+        <a href="https://github.com/Carleton-University-FPGA-Dev-Club/cu-fpga-club-s26-project-fpga-custom-project" class="project-link">
+          Github Repo
+        </a>
+        <a href="blog/fpga-game.html" class="project-link">
+          Read the full write-up →
+        </a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>This Portfolio</h3>
+        <span class="tag">HTML · CSS</span>
+      </div>
+      <p>
+        Slowly leveling up this page as I learn more front-end. JavaScript is next on the list,
+        then hosting it properly on GitHub Pages.
+      </p>
+      <a href="blog/portfolio.html" class="project-link">Read the full write-up →</a>
+    </div>
+
+    <p style="margin-top: 28px;">
+      <a href="blog.html" class="project-link" style="font-size: 14px;">→ View all posts on the blog</a>
+    </p>
+  </section>
+
+  <section id="contact">
+    <div class="num">04</div>
+    <h2>Contact</h2>
+    <p>Feel free to reach out, I'm always happy to talk about computer systems, motorsport, or general tech gossip.</p>
+    <div class="contact-links">
+      <a href="mailto:senurdissa@hotmail.com">
+        ✉ Email
+      </a>
+      <a href="https://www.linkedin.com/in/senura-dissanayake-73113626a" target="_blank" rel="noopener">
+        ↗ LinkedIn
+      </a>
+      <a href="https://github.com/senuradissa"> 
+        💻 Github
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    built with html &amp; css — last updated 2026
+  </footer>
+
+  <script>
+    const start = Date.now();
+    const el = document.getElementById('uptime');
+    setInterval(() => {
+      const s = Math.floor((Date.now() - start) / 1000);
+      el.textContent = 'uptime: ' + s + 's';
+    }, 1000);
+  </script>
+
+</body>
+</html>
